@@ -16,6 +16,11 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@app-components": ["src/components"],
+      "@app-components/*": ["src/components/*"],
+    },
 
     /* Linting */
     "strict": true,
