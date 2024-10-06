@@ -4,3 +4,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+    .heading-xl {
+        @apply font-bold text-[48px]
+    }
+
+    .heading-l {
+        @apply font-bold text-[32px]
+    }
+
+    .body-bold {
+        @apply font-bold text-[18px]
+    }
+
+    .body {
+        @apply text-[18px]
+    }
+
+    .mini-caption {
+        @apply text-[15px]
+    }
+
+}

@@ -11,6 +11,7 @@ export default {
     extend: {
       colors: {
         white: {
+          default: '#FFFFFF',
           card: '#FFFBF6'
         },
         cream: {
