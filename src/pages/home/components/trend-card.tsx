@@ -6,18 +6,30 @@ export function TrendCard() {
     const { analyse, data, setHover, setHoverOut } = useTrendLineAnalyse()
 
     const renderDaySpendings = (data: AnalysedDaySpendingsI, key: number) => (
-        <Wrapper key={key} className='relative flex flex-col gap-[11px] justify-end items-center '>
-            {data.isHover && <div className='body-bold text-white-card bg-brown-dark p-2 absolute top-[-3rem] rounded-[5px]'>${data.amount}</div>}
-            <div onMouseEnter={() => setHover(data)} onMouseOut={() => setHoverOut(data)} style={{ height: `${data.percentage}%` }} className={`${data.isMaxAmount ? 'bg-cyan hover:bg-[#B4E0E5]' : 'bg-red hover:bg-[#FF9B86]'} min-w-[33px] sm:min-w-[50.36px] max-h-[150px] min-h-[0] rounded-[3px] transition-all duration-300 ease-in-out cursor-pointer`} />
-            <p className='text-brown-medium text-[12px] sm:mini-caption'>{data.day}</p>
+        <Wrapper
+            key={key}
+            className="relative flex flex-col gap-[11px] justify-end items-center max-h-fit"
+        >
+            {data.isHover && (
+                <div className="text-[12px] font-bold sm:body-bold text-white-card bg-brown-dark p-2 absolute top-[-2.75rem] sm:top-[-3.5rem] rounded-[5px]">
+                    ${data.amount}
+                </div>
+            )}
+            <div
+                onMouseEnter={() => setHover(data)}
+                onMouseLeave={() => setHoverOut(data)}
+                style={{ height: `${data.percentage}%`, minHeight: `calc(150px * (${data.percentage}/100))` }}
+                className={`${data.isMaxAmount ? 'bg-cyan hover:bg-[#B4E0E5]' : 'bg-red hover:bg-[#FF9B86]'} hover:scale-105 min-w-[33px] sm:min-w-[50.36px] max-h-[150px] rounded-[3px] transition duration-300 ease-in-out cursor-pointer`}
+            />
+            <p className="text-brown-medium text-[12px] sm:mini-caption">{data.day}</p>
         </Wrapper>
-    )
+    );
 
     const renderTrendLines = () => (
-        <Wrapper className='w-full min-h-[177px] h-full flex justify-between gap-3'>
+        <Wrapper className="w-full min-h-[177px] h-full flex justify-between items-end gap-3">
             {data?.map(renderDaySpendings)}
         </Wrapper>
-    )
+    );
 
     const renderDivider = () => <div className='w-full h-[1px] bg-[#F8E9DD]' />
 
@@ -46,17 +58,12 @@ export function TrendCard() {
         if (data.length <= 0) {
             fetchData('/data/data.json')
                 .then((response: TrendLineData) => {
-                    console.log({ response })
                     analyse(response)
                 })
         }
 
 
     }, [data, analyse])
-
-    React.useEffect(() => {
-        console.log({ data })
-    }, [data])
 
     return (
         <Wrapper className='bg-white-card w-full px-[20px] py-6 sm:p-10 rounded-[10px] sm:rounded-[20px] flex flex-col gap-[52px]'>
