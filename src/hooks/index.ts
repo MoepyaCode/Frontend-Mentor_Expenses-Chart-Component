@@ -1,0 +1,1 @@
+export { useTrendLineAnalyse } from './trend-analyse'
