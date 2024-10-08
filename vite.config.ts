@@ -9,6 +9,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      '@app-assets': resolve(root, 'assets'),
+      '@app-assets/*': resolve(root, 'assets/*'),
       '@app-components': resolve(root, 'components'),
       '@app-components/*': resolve(root, 'components/*'),
       '@app-hooks': resolve(root, 'hooks'),

@@ -1,4 +1,5 @@
 import { Wrapper } from '@app-components'
+import Logo from '@app-assets/logo.svg'
 
 export function BalanceBar() {
   return (
@@ -8,7 +9,7 @@ export function BalanceBar() {
         <p className='font-bold text-[24px] sm:heading-l'>$921.48</p>
       </Wrapper>
 
-      <img src="/src/assets/logo.svg" alt="" />
+      <img src={Logo} alt="Logo" />
     </Wrapper>
   )
 }
